@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fresho</title>
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body>
+  <header>
+    <h1><img src="/img/cart.png"> Fresho</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="/HomePage/Home.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="Welcome">
+    <div class="image-container" style="width: 100%">
+    </div>
+  </div>
+  
+    <div class="container">
+    <div class="box">
+      <h2>Special Offers <img src="/img/customer.png"></h2>
+      <h1><b>$93,438.78</b></h1>
+      <p>Monthly revenue</p>
+    </div>
+  
+    <div class="box">
+        <h2>Orders <img src="/img/tracking.png"></h2>
+        <h1><b>42,339</b></h1>
+        <p>35+ New Sales</p>
+    </div>
+    <div class="box">
+      <h2>Customers <img src="/img/customer.png"></h2>
+      <h1><b>39,354</b></h1>
+      <p>30+ new in 2 days</p>
+    </div>
+    </div>
+    <div class="statistics">
+    <div class="box-sales">
+        <h2>Total Sales</h2>
+        <div class="circle">
+          <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    <div class="table">
+    <h2>Recent Order</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Order Number</th>
+            <th>Product Name</th>
+            <th>Order Date</th>
+            <th>Price</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>Product 1</td>
+            <td>2024-03-03</td>
+            <td>$99.99</td>
+            <td class="status-shipped">Shipped</td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>Product 2</td>
+            <td>2024-03-02</td>
+            <td>$49.99</td>
+            <td class="status-pending">Pending</td>
+          </tr>
+          <tr>
+            <td>003</td>
+            <td>Product 3</td>
+            <td>2024-03-02</td>
+            <td>$62.87</td>
+            <td class="status-cancel">Cancel</td>
+          </tr>
+          <tr>
+            <td>004</td>
+            <td>Product 4</td>
+            <td>2024-03-02</td>
+            <td>$37.09</td>
+            <td class="status-processing">Processing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      </div>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="Dashboard.js"></script>
+</body>
+</html>

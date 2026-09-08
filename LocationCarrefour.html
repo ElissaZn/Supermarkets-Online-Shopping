@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Google Maps</title>
+</head>
+<body>
+    <h1>Open Google Maps</h1>
+    <button onclick="openGoogleMaps()">Get Directions</button>
+
+    <script>
+        function openGoogleMaps() {
+            const liuBeirut = "Lebanese+International+University,+Beirut";
+            const carrefourCityCenter = "Carrefour+City+Center,+Beirut";
+            const url = `https://www.google.com/maps/dir/?api=1&origin=${liuBeirut}&destination=${carrefourCityCenter}&travelmode=driving`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

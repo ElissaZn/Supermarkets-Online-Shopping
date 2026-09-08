@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+    <head>
+    <html lang="en"></html>
+    <meta charset="UTF-8">
+    <title>Vegetable</title>
+    <link rel="stylesheet" href="category.css">
+    <script src="cart.js" arsync></script>
+    <script type="text/javascript"> 
+      function vegmove() { 
+         window.location.href="veg.html"
+      }
+      function fruitsmove() { 
+         window.location.href="fruit.html"
+      }
+      function meatsmove() { 
+         window.location.href="meats.html"
+      }
+      function dairymove() { 
+         window.location.href="dairy.html"
+      }
+      function candymove() { 
+         window.location.href="candy.html"
+      }
+      function reviewmove() { 
+           window.location.href="review.html"
+        }
+      </script>
+    </head>
+      <body>
+         <body>
+            <header> 
+               <h1><img src="/img/coop.png" width="100px"> </h1>
+               <nav class="navbar">
+                   <ul>
+                       <li><a href="#" onclick="vegmove()">Vegetable</a></li>
+                       <li><a href="#"onclick="fruitsmove()" >Fruit</a></li>
+                       <li><a href="#" onclick="meatsmove()" >Meat</a></li>
+                       <li><a href="#" onclick="dairymove()" >Dairy</a></li>
+                       <li><a href="#"onclick="candymove()">Dessert</a></li>
+                       </ul>
+               </nav>
+           </header> 
+           <br>
+            <div class="container">
+               <h3 class="title"> organic products </h3>
+               <div class="producttss">
+                  <div class="product" data-name="p-1">
+                     <img class="shopItemImage" src="img/png_cucumber_17777.png" style width="250" height="250"> 
+                     <h3 class="shopItemTitle">cucumbers</h3> 
+                     <div class="price shopItemPrice">$2.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn btnBuy btnBuyNow">buy now</a>
+                     </div>
+                  </div>
+                  <div class="product" data-name="p-2">
+                     <img class="shopItemImage" src="img/product-2.png" style width="250" height="250" >
+                     <h3 class="shopItemTitle">onions</h3>
+                     <div class="price shopItemPrice">$3.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn btnBuy btnBuyNow">buy now</a>
+                     </div>
+                  </div>
+                  <div class="product" data-name="p-3">
+                     <img class="shopItemImage" src="img/Tomato-clipart-transparent-background.png" style width="250" height="250">
+                     <h3 class="shopItemTitle">tomatoes</h3>
+                     <div class="price shopItemPrice">$5.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn btnBuy btnBuyNow">buy now</a>
+                     </div>
+                  </div>
+                  <div class="product" data-name="p-4">
+                     <img class="shopItemImage" src="img/4.png" style width="250" height="250">
+                     <h3 class="shopItemTitle">eggplant</h3>
+                     <div class="price shopItemPrice">$8.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn btnBuy btnBuyNow">buy now</a>
+                     </div>
+                  </div>
+                  <div class="product" data-name="p-5" style width="250" height="250">
+                     <img class="shopItemImage" src="img/lettuce.jfif" >
+                     <h3 class="shopItemTitle">lettuce</h3>
+                     <div class="price shopItemPrice">$6.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn btnBuy btnBuyNow">buy now</a>
+                     </div>
+                  </div>
+            
+                  <div class="product" data-name="p-6">
+                     <img class="shopItemImage" src="img/product-5.png" alt="">
+                     <h3 class="shopItemTitle">potatoes</h3>
+                     <div class="price shopItemPrice">$2.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn btnBuy btnBuyNow">buy now</a>
+                     </div>
+                  </div>
+               </div>
+            </div>            
+            <section class="container contentSection">
+               <h2 class="sectionHeader">CART</h2>
+               <div class="cartRow">
+                   <span class="cartItem cartHeader cartColumn">ITEM</span>
+                   <span class="cart-price cartHeader cartColumn">PRICE</span>
+                   <span class="cart-quantity cartHeader cartColumn">QUANTITY</span>
+               </div>
+               <div class="cartItems">
+               </div>
+               <div class="cartTotal">
+                   <strong class="cartTotalTitle">Total</strong>
+                   <span class="cartTotalPrice">$0</span>
+               </div>
+               <button class="btn btnBuy purchaseBtn" type="button" id="purchaseButton">PURCHASE</button>
+           </section>        
+      </body>
+      <script type="text/javascript">
+         document.addEventListener('DOMContentLoaded', () => {
+             const products = document.querySelectorAll('.product');
+ 
+             function loadRemovedItems() {
+                 let removedItems = JSON.parse(localStorage.getItem('removedItems')) || [];
+                 products.forEach(product => {
+                     const productName = product.querySelector('.shopItemTitle').textContent;
+                     if (removedItems.includes(productName)) {
+                         product.remove();
+                     }
+                 });
+             }
+ 
+             loadRemovedItems();
+         });
+     </script>
+<script type="text/javascript">
+   function loadProducts() {
+  let products = JSON.parse(localStorage.getItem('products')) || [];
+  const productContainer = document.querySelector('.producttss');
+
+  products.forEach(product => {
+      const productHTML = `
+          <div class="product">
+              <img class="shopItemImage" src="${product.imageDataUrl}" style="width:250px; height:250px;">
+              <h3 class="shopItemTitle">${product.title}</h3>
+              <div class="price shopItemPrice">$${product.price}</div>
+              <div class="buttons">
+               <a href="#" class="buy btn btnBuy btnBuyNow">buy now</a>
+              </div>
+          </div>
+      `;
+      productContainer.insertAdjacentHTML('beforeend', productHTML);
+  });
+}
+
+loadProducts();
+</script> 
+
+<script>
+   // JavaScript to handle the "PURCHASE" button click
+   document.getElementById('purchaseButton').addEventListener('click', function() {
+       window.location.href = '/Ordering/OrderingCO.html'; // Navigate to the desired URL
+   });
+</script>       
+</body>
+<style>
+#newProductForm {
+display: flex;
+flex-direction: column;
+max-width: 400px;
+margin: 20px auto;
+padding: 20px;
+border: 2px solid #ddd;
+border-radius: 10px;
+background-color: #f9f9f9;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#newProductForm input[type="text"],
+#newProductForm input[type="number"],
+#newProductForm input[type="file"] {
+margin-bottom: 15px;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+font-size: 16px;
+}
+
+#newProductForm button[type="submit"] {
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+background-color: #28a745;
+color: #fff;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+#newProductForm button[type="submit"]:hover {
+background-color: #218838;
+}
+
+/* Additional styles to make the form look better on smaller screens */
+@media (max-width: 500px) {
+#newProductForm {
+padding: 15px;
+}
+
+#newProductForm input[type="text"],
+#newProductForm input[type="number"],
+#newProductForm input[type="file"],
+#newProductForm button[type="submit"] {
+font-size: 14px;
+}
+}
+</style>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Payment-Page</title>
+    <link rel="stylesheet" href="Ordering.css">
+</head>
+<style>
+	.inputBox input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-transform: none; /* Ensure text remains as typed */
+        }
+</style>
+<body>
+    <div class="container">
+        <form id="orderForm" action="#">
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">Billing Address</h3>
+                    <div class="inputBox">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="inputBox">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter email address" required>
+    </div>
+                    <div class="inputBox">
+                        <label for="text">Location:</label>
+                        <button><a href="/LocationSpinneys.html">Open location</a></button>
+                    </div>
+                </div>
+                <div class="col">
+                    <h3 class="title">Payment</h3>
+                    <div class="inputBox">
+                        <label for="cardName">Card Accepted:</label>
+                        <img src="/img/visa.jpg" alt="credit/debit card image">
+                    </div>
+                    <div class="inputBox">
+                        <label for="cardName">Name On Card:</label>
+                        <input type="text" id="cardName" placeholder="Enter card name" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="cardNum">Credit Card Number:</label>
+                        <input type="text" id="cardNum" placeholder="1111-2222-3333-4444" maxlength="19" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="expMonth">Exp Month:</label>
+                        <select name="" id="expMonth">
+                            <option value="">Choose month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <div class="flex">
+                        <div class="inputBox">
+                            <label for="expYear">Exp Year:</label>
+                            <select name="" id="expYear">
+                                <option value="">Choose Year</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                            </select>
+                        </div>
+                        <div class="inputBox">
+                            <label for="cvv">CVV</label>
+                            <input type="number" id="cvv" placeholder="1234" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Send" class="submit_btn">
+        </form>
+    </div>
+	<script>
+		document.getElementById('orderForm').addEventListener('submit', function(event) {
+			event.preventDefault();
+            const orderData4 = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    cardName: document.getElementById('cardName').value,
+    cardNum: document.getElementById('cardNum').value,
+    expMonth: document.getElementById('expMonth').value,
+    expYear: document.getElementById('expYear').value,
+    cvv: document.getElementById('cvv').value
+};
+let orders = JSON.parse(localStorage.getItem('orderData4')) || [];
+orders.push(orderData4);
+localStorage.setItem('orderData4', JSON.stringify(orders));
+
+			alert('Your order is delivered');
+			window.location.href = '/HomePage/Home.html';
+		});
+	</script>
+	
+</body>
+
+</html>

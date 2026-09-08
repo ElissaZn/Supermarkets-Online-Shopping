@@ -1,0 +1,148 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: linear-gradient(#29ADB2, #C5E898);
+  color: #fff;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin-left: 20px; /* Add margin to separate logo from text */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff; 
+  font-size: larger;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.Welcome {
+  max-width: 80%;
+  margin: 40px auto;
+  padding: 0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+.container{
+  display: flex;
+}
+.box {
+  flex: 1;
+  flex-direction: column;
+  width: 30%;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 11px;
+  background-color: #fff;
+  vertical-align: top;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+p{
+  color: grey;
+}
+.box-sales{
+  width: 33%;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 11px;
+  background-color: #fff;
+  vertical-align: top;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.image-container {
+display: flex;
+align-items: center;
+justify-content: center;
+background: url(/img/Grocery1.jpg) no-repeat;
+background-position: center;
+background-size: cover;
+padding-top: 25rem;
+padding-bottom: 10rem;
+}
+
+.create-order-button {
+  position: absolute;
+  top: 86%;
+  left: 9%;
+  transform: translate(-50%, -50%);
+  background:linear-gradient(#29ADB2, #C5E898);;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+body{
+  background-color: #D3D3D3;
+}
+.statistics{
+  display: flex;
+}
+.table{
+  width: 70%;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 11px;
+  background-color: #fff;
+  vertical-align: top;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.table {
+  margin-top: 20px;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+  text-align: left;
+}
+
+.status-shipped {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.status-pending {
+  background-color: #FF9800; /* Orange */
+  color: white;
+}
+
+.status-cancel {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.status-processing {
+  background-color: #2196F3; /* Blue */
+  color: white;
+}

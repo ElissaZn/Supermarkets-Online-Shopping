@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+    <head>
+    <html lang="en"></html>
+    <meta charset="UTF-8">
+    <title>Dairy </title>
+    <link rel="stylesheet" href="category.css">
+    <script src="cart.js" arsync></script>
+    <script type="text/javascript">
+      function vegmove() {
+          window.location.href="vegadmin.html";
+      }
+      function fruitsmove() {
+          window.location.href="fruitadmin.html";
+      }
+      function meatsmove() {
+          window.location.href="meatsadmin.html";
+      }
+      function dairymove() {
+          window.location.href="dairyadmin.html";
+      }
+      function candymove() {
+          window.location.href="candyadmin.html";
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+          const removeButtons = document.querySelectorAll('.removeButton');
+          const products = document.querySelectorAll('.product');
+
+          removeButtons.forEach(button => {
+              button.addEventListener('click', () => {
+                  const product = button.closest('.product');
+                  const productName = product.querySelector('.shopItemTitle').textContent;
+                  removeItem(productName);
+                  product.remove();
+              });
+          });
+
+          function removeItem(productName) {
+              let removedItems = JSON.parse(localStorage.getItem('removedItems')) || [];
+              if (!removedItems.includes(productName)) {
+                  removedItems.push(productName);
+                  localStorage.setItem('removedItems', JSON.stringify(removedItems));
+              }
+          }
+
+          function loadRemovedItems() {
+              let removedItems = JSON.parse(localStorage.getItem('removedItems')) || [];
+              products.forEach(product => {
+                  const productName = product.querySelector('.shopItemTitle').textContent;
+                  if (removedItems.includes(productName)) {
+                      product.remove();
+                  }
+              });
+          }
+
+          loadRemovedItems();
+
+          const form = document.querySelector('#newProductForm');
+          form.addEventListener('submit', (e) => {
+              e.preventDefault();
+
+              const title = document.querySelector('#productTitle').value;
+              const price = document.querySelector('#productPrice').value;
+              const image = document.querySelector('#productImage').files[0];
+
+              const reader = new FileReader();
+              reader.onload = () => {
+                  const imageDataUrl = reader.result;
+                  addProduct(title, price, imageDataUrl);
+                  saveProduct(title, price, imageDataUrl);
+              };
+              reader.readAsDataURL(image);
+          });
+
+          function addProduct(title, price, imageDataUrl) {
+              const productContainer = document.querySelector('.producttss');
+              const productHTML = `
+                  <div class="product">
+                      <img class="shopItemImage" src="${imageDataUrl}" style="width:250px; height:250px;">
+                      <h3 class="shopItemTitle">${title}</h3>
+                      <div class="price shopItemPrice">$${price}</div>
+                      <div class="buttons">
+                          <a href="#" class="buy btn removeButton">remove</a>
+                      </div>
+                  </div>
+              `;
+              productContainer.insertAdjacentHTML('beforeend', productHTML);
+
+              const newProduct = productContainer.lastElementChild;
+              const removeButton = newProduct.querySelector('.removeButton');
+              removeButton.addEventListener('click', () => {
+                  removeItem(title);
+                  newProduct.remove();
+              });
+          }
+
+          function saveProduct(title, price, imageDataUrl) {
+              let products = JSON.parse(localStorage.getItem('products')) || [];
+              products.push({ title, price, imageDataUrl });
+              localStorage.setItem('products', JSON.stringify(products));
+          }
+      });
+  </script>
+    </head>
+      <body>
+         <body>
+            <header> 
+               <h1><img src="/img/coop.png" width="100px"> </h1>
+               <nav class="navbar">
+                   <ul>
+                       <li><a href="#" onclick="vegmove()">Vegetable</a></li>
+                       <li><a href="#"onclick="fruitsmove()" >Fruit</a></li>
+                       <li><a href="#" onclick="meatsmove()" >Meat</a></li>
+                       <li><a href="#" onclick="dairymove()" >Dairy</a></li>
+                       <li><a href="#"onclick="candymove()">Dessert</a></li>
+                       </ul>
+               </nav>
+           </header> 
+           <br>
+            <div class="container">
+               <h3 class="title"> organic products </h3>
+               <form id="newProductForm">
+                  <input type="text" id="productTitle" placeholder="Title" required>
+                  <input type="number" id="productPrice" placeholder="Price" required>
+                  <input type="file" id="productImage" accept="image/*" required>
+                  <button type="submit">Save</button>
+              </form>
+               <div class="producttss">
+                  <div class="product" data-name="p-1">
+                     <img class="shopItemImage" src="img/milkw.jfif" style width="250" height="250"> 
+                     <h3 class="shopItemTitle">milk</h3> 
+                     <div class="price shopItemPrice">$20.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn removeButton">remove</a>
+                     </div>
+                  </div>
+                  <div class="product" data-name="p-2">
+                     <img class="shopItemImage" src="img/chocale milk.jfif" style width="250" height="250" >
+                     <h3 class="shopItemTitle">chocolate milk</h3>
+                     <div class="price shopItemPrice">$22.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn removeButton">remove</a>
+                     </div>
+                  </div>
+                  <div class="product" data-name="p-3">
+                     <img class="shopItemImage" src="img/stawberry milk.webp" style width="250" height="250">
+                     <h3 class="shopItemTitle">stawberry milk</h3>
+                     <div class="price shopItemPrice">$22.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn removeButton">remove</a>
+                     </div>
+                  </div>
+                  <div class="product" data-name="p-4">
+                     <img class="shopItemImage" src="img/cheese.jpg_480Wx480H.webp" style width="250" height="250">
+                     <h3>cheese</h3>
+                     <div class="price shopItemPrice">$35.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn removeButton">remove</a>
+                     </div>
+                  </div>
+            
+                  <div class="product" data-name="p-5" style width="250" height="250">
+                     <img class="shopItemImage" src="img/yoghurt.jpg" >
+                     <h3 class="shopItemTitle">yoghurt</h3>
+                     <div class="price shopItemPrice">$7.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn removeButton">remove</a>
+                     </div>
+                  </div>
+            
+                  <div class="product" data-name="p-6">
+                     <img class="shopItemImage" src="img/labneh.jpg" alt="">
+                     <h3 class="shopItemTitle">labneh</h3>
+                     <div class="price shopItemPrice">$30.00</div>
+                     <div class="buttons">
+                        <a href="#" class="buy btn removeButton">remove</a>
+                     </div>
+                  </div>
+               </div>
+            </div>    
+      </body>
+
+      <style>
+         /* category.css */
+      
+      /* Basic reset for the form */
+      #newProductForm {
+          display: flex;
+          flex-direction: column;
+          max-width: 400px;
+          margin: 20px auto;
+          padding: 20px;
+          border: 2px solid #ddd;
+          border-radius: 10px;
+          background-color: #f9f9f9;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      #newProductForm input[type="text"],
+      #newProductForm input[type="number"],
+      #newProductForm input[type="file"] {
+          margin-bottom: 15px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+      }
+      
+      #newProductForm button[type="submit"] {
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          background-color: #28a745;
+          color: #fff;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+      
+      #newProductForm button[type="submit"]:hover {
+          background-color: #218838;
+      }
+      
+      /* Additional styles to make the form look better on smaller screens */
+      @media (max-width: 500px) {
+          #newProductForm {
+              padding: 15px;
+          }
+      
+          #newProductForm input[type="text"],
+          #newProductForm input[type="number"],
+          #newProductForm input[type="file"],
+          #newProductForm button[type="submit"] {
+              font-size: 14px;
+          }
+      }
+      </style>
+      

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="Admin.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #dddddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        .clear-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .clear-btn:hover {
+            background-color: #c82333;
+        }
+
+        .proceed-btn {
+            padding: 6px 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .proceed-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+     <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="/Spinneys/index.html" class="logo">Create Product</a>
+        </header>
+    <div class="container">
+        <h2>Order Details</h2>
+        <table id="orderTable">
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Name on Card</th>
+                <th>Credit Card Number</th>
+                <th>Exp Month</th>
+                <th>Exp Year</th>
+                <th>CVV</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+function populateTable() {
+    const orderData4 = JSON.parse(localStorage.getItem('orderData4')) || [];
+    console.log(orderData4);  // Add this line to debug
+    const table = document.getElementById('orderTable');
+
+    if (orderData4.length === 0) {
+        console.log('No order data found.');
+        return;
+    }
+
+    orderData4.forEach(order => {
+        const row = table.insertRow();
+        row.insertCell(0).innerText = order.name;
+        row.insertCell(1).innerText = order.email;
+        row.insertCell(2).innerText = order.cardName;
+        row.insertCell(3).innerText = order.cardNum;
+        row.insertCell(4).innerText = order.expMonth;
+        row.insertCell(5).innerText = order.expYear;
+        row.insertCell(6).innerText = order.cvv;
+        const proceedCell = row.insertCell(7);
+        const proceedButton = document.createElement('button');
+        proceedButton.className = 'proceed-btn';
+        proceedButton.innerText = 'Proceed';
+        proceedButton.addEventListener('click', function() {
+            const recipientEmail = order.email;
+            const subject = 'Your order is being processed';
+            const body = 'Dear ' + order.name + ',\n\nYour order is being processed.\n\nThank you.';
+            
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "elissazein@gmail.com",
+                Password: "2001Elissa2001",
+                To: "82030663@students.liu.edu.lb",
+                From: "elissazein@gmail.com",
+                Subject: "Ordering",
+                Body:"The order is on the way"
+            }).then(function(message) {
+                alert("Email sent successfully");
+            });
+        });
+        proceedCell.appendChild(proceedButton);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    populateTable();
+});
+</script>
+
+</body>
+
+</html>
